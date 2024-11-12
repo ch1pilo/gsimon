@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/Style1.css" %}">
+    <title>Gestor Simon</title> <!-- Cambié el título para que sea más descriptivo -->
+</head>
+<body>
+    <div class="top-bar">
+        <div class="user-info">
+            {% if request.user.is_authenticated %}
+                <span>Usuario: {{ request.user.tipoUser }}</span>
+            {% endif %}
+        </div>
+        <form method="POST" action="{% url "logout" %}">
+            {% csrf_token %}
+            <button type="submit" class="salir">
+                <img src="{% static 'img/cerrar-sesion-de-usuario.png' %}" alt="Salir">
+            </button>
+        </form>
+    </div>
+    <div class="contenido">
+        <div class="titulo">
+            {% if request.user.is_authenticated %}
+            <h1>¡Bienvenido {{ request.user.username }}!</h1>
+         {% endif %}
+            <h4>Gestión eficiente ,oportunidades brillantes</h4>
+        </div>
+
+        <div class="contenedor">
+            <div class="fila">
+                <button class="edit">
+                    <a href="../ediPerfil">
+                        <img src="{% static 'img/editar.png' %}" alt="">
+                        <p>
+                            Editar perfil
+                        </p>
+                    </a>
+                </button>
+            </div>
+            <div class="fila1">
+                <button  class="reporte">
+                    <a href="">
+                        <img src="{% static 'img/informe.png' %}" alt="">
+                        <p>Reportes</p>
+                    <a/>
+                </button>
+            </div>
+            <div class="fila2">
+                <button class="seguimiento" href="">
+                    <a href="">
+                        <img src="{% static 'img/formula.png' %}" alt="">
+                        <p>Seguimiento</p>
+                    <a/>
+                </button>
+            </div>
+        </div>
+    </div>
+        <footer>
+            <div class="ins"><img src="{% static "img/ins.png" %}" alt=""></div>
+            <div class="face"><img src="{% static "img/face.png" %}" alt=""></div>
+            <div class="x"><img src="{% static "img/x.png" %}" alt=""></div>
+        </footer>
+    
+</body>
+</html>
